@@ -1,60 +1,46 @@
 package org.example.food_trunk.entity;
 
+import jakarta.persistence.*;
+import lombok.Data;
 
-import jakarta.persistence.Entity;
-import jakarta.persistence.GeneratedValue;
-import jakarta.persistence.GenerationType;
-import org.springframework.data.annotation.Id;
 
 @Entity
+@Data
 public class FoodTruck {
 
-    @jakarta.persistence.Id
+    @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
-    private String facilityName;
+    private Long locationid;
+    private String applicant;
+    private String facilityType;
+    private Long cnn;
+    private String locationDescription;
+    private String address;
+    private String blocklot;
+    private String block;
+    private String lot;
+    private String permit;
     private String status;
+
+    @Column(name = "food_items", columnDefinition = "TEXT")
+    private String foodItems;
+    private Double x;
+    private Double y;
+    private Double latitude;
+    private Double longitude;
+    private String schedule;
+    private String dayshours;
+    private String noiSent;
+    private String approved;
+    private String received;
+    private String priorPermit;
+    private String expirationDate;
     private String location;
-
-    // 构造方法、getter、setter
-
-    public FoodTruck() {}
-
-    public FoodTruck(String facilityName, String status, String location) {
-        this.facilityName = facilityName;
-        this.status = status;
-        this.location = location;
-    }
-
-
-    public String getFacilityName() {
-        return facilityName;
-    }
-
-    public void setFacilityName(String facilityName) {
-        this.facilityName = facilityName;
-    }
-
-    public String getStatus() {
-        return status;
-    }
-
-    public void setStatus(String status) {
-        this.status = status;
-    }
-
-    public String getLocation() {
-        return location;
-    }
-
-    public void setLocation(String location) {
-        this.location = location;
-    }
-
-
-
-    public Long getId() {
-        return id;
-    }
+    private Integer firePreventionDistricts;
+    private Integer policeDistricts;
+    private Integer supervisorDistricts;
+    private Integer zipCodes;
+    private Integer neighborhoodsOld;
 }

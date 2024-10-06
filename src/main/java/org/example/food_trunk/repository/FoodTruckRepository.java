@@ -1,8 +1,13 @@
 package org.example.food_trunk.repository;
 
-import com.example.foodtruck.entity.FoodTruck;
+
+import org.example.food_trunk.entity.FoodTruck;
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.Pageable;
 import org.springframework.data.jpa.repository.JpaRepository;
 
+
 public interface FoodTruckRepository extends JpaRepository<FoodTruck, Long> {
-    // 可以根据需要添加自定义查询方法
+
+    Page<FoodTruck> findByFoodItemsContainingIgnoreCase(String foodItems, Pageable pageable);
 }

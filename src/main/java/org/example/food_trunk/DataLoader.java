@@ -3,34 +3,40 @@ package org.example.food_trunk;
 
 import com.opencsv.bean.CsvToBean;
 import com.opencsv.bean.CsvToBeanBuilder;
-import org.example.food_trunk.csv.FoodPermit;
+import org.example.food_trunk.csv.FoodTruckCsvBean;
+
+import org.example.food_trunk.entity.FoodTruck;
+import org.example.food_trunk.mapper.FoodTruckMapper;
+import org.example.food_trunk.repository.FoodTruckRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.stereotype.Component;
 
-import java.io.InputStreamReader;
-import java.io.Reader;
+import java.io.FileReader;
 import java.util.List;
 
 @Component
 public class DataLoader implements CommandLineRunner {
 
     @Autowired
-    private FoodPermitRepository foodPermitRepository;
+    private FoodTruckRepository foodTruckRepository;
+
+    @Autowired
+    private FoodTruckMapper foodTruckMapper;
 
     @Override
     public void run(String... args) throws Exception {
-        try (Reader reader = new InputStreamReader(getClass().getResourceAsStream("/Mobile_Food_Facility_Permit (1).csv"))) {
-
-            // 使用 CsvToBean 将 CSV 文件映射到实体类
-            CsvToBean<FoodPermit> csvToBean = new CsvToBeanBuilder<FoodPermit>(reader)
-                    .withType(FoodPermit.class)
+        try (FileReader reader = new FileReader("/Users/mac/Downloads/Mobile_Food_Facility_Permit.csv")) {
+            CsvToBean<FoodTruckCsvBean> csvToBean = new CsvToBeanBuilder<FoodTruckCsvBean>(reader)
+                    .withType(FoodTruckCsvBean.class)
                     .withIgnoreLeadingWhiteSpace(true)
                     .build();
 
-            // 解析 CSV 并保存到数据库
-            List<FoodPermit> foodPermits = csvToBean.parse();
-            foodPermitRepository.saveAll(foodPermits);
+            List<FoodTruckCsvBean> csvBeans = csvToBean.parse();
+            List<FoodTruck> foodTrucks = csvBeans.stream()
+                    .map(foodTruckMapper::csvToEntity)
+                    .toList();
+            foodTruckRepository.saveAll(foodTrucks);
         }
     }
 }

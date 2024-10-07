@@ -84,7 +84,7 @@ src
 │       └── Mobile_Food_Facility_Permit.csv.csv
 └── test
     └── java
-        └── com.example.foodtruck
+        └── org.example.food_truck
             ├── controller
             └── service
 ```

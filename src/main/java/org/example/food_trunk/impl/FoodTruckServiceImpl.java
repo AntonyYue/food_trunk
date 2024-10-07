@@ -2,7 +2,6 @@ package org.example.food_trunk.impl;
 
 
 import org.example.food_trunk.dto.FoodTruckDTO;
-import org.example.food_trunk.entity.FoodTruck;
 import org.example.food_trunk.mapper.FoodTruckMapper;
 import org.example.food_trunk.repository.FoodTruckRepository;
 import org.example.food_trunk.service.FoodTruckService;

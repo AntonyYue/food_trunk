@@ -7,11 +7,9 @@ import org.example.food_trunk.dto.FoodTruckDTO;
 import org.example.food_trunk.service.FoodTruckService;
 import org.example.food_trunk.util.PagingSlicedResult;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.domain.Page;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.List;
 
 @RestController
 @RequestMapping("/api")

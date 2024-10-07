@@ -1,13 +1,12 @@
 # Food Truck Management System
 
-This project is a Spring Boot-based application that provides a REST API to manage and query food trucks using an in-memory H2 database. The data is imported from a CSV file, and the system provides paginated results for easy querying. The project utilizes several key technologies, including Spring Data JPA, OpenCSV, and Swagger for API documentation.
+This project is a Spring Boot-based application that provides a REST API to  query food trucks using an in-memory H2 database. The data is imported from a CSV file, and the system provides paginated results for easy querying. The project utilizes several key technologies, including Spring Data JPA, OpenCSV, and Swagger for API documentation.
 
 ## Features
 
 - Import food truck data from a CSV file automatically.
 - Store the data in an in-memory H2 database.
 - Provide a REST API to query food truck information.
-- Support paginated query results using `PagingSlicedResult`.
 - API documentation with Swagger UI.
 - Unit testing with JUnit 5 and Mockito.
 
@@ -45,8 +44,14 @@ This project is a Spring Boot-based application that provides a REST API to mana
 4. mvn spring-boot:run
    ```bash
    mvn spring-boot:run
+### Accessing the API
+Swagger UI documentation is available at:
+[Swagger](http://localhost:8080/swagger-ui/index.html)
 
-
-
+This is the only API currently provided,you can import into postman or call this directly:
+  ````bash
+curl -X 'GET' \
+  'http://localhost:8080/api/foodtrucks?foodItem=Noodles&pageNumber=0&pageSize=10' \
+  -H 'accept: */*'
 
 

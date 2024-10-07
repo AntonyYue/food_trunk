@@ -7,7 +7,6 @@ import lombok.Data;
 @Data
 public class FoodTruckDTO {
 
-
     private Long locationid;
     private String applicant;
     private String facilityType;

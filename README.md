@@ -108,4 +108,4 @@ src
 
 ## License
 
-This project is licensed under the MIT License. See the [LICENSE](https://github.com/AntonyYue/food_trunk/blob/main/LICENSE) file for more information.
+This project is licensed under the MIT License. See the [LICENSE](https://github.com/AntonyYue/food_trunk?tab=MIT-1-ov-file) file for more information.

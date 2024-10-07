@@ -1,9 +1,9 @@
-package org.example.food_trunk;
+package org.example.food_trunk.controller;
 
-import org.example.food_trunk.controller.FoodTruckController;
 import org.example.food_trunk.dto.FoodTruckDTO;
 import org.example.food_trunk.service.FoodTruckService;
 import org.example.food_trunk.util.PagingSlicedResult;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -28,9 +28,11 @@ class FoodTruckControllerTest {
 
     private PagingSlicedResult<FoodTruckDTO> pagingSlicedResult;
 
+    private AutoCloseable autoCloseable;
+
     @BeforeEach
     void setUp() {
-        try (AutoCloseable autoCloseable = MockitoAnnotations.openMocks(this)) {
+        autoCloseable = MockitoAnnotations.openMocks(this);
 
         FoodTruckDTO foodTruckDTO = new FoodTruckDTO();
         foodTruckDTO.setFacilityType("Test Facility");
@@ -38,8 +40,12 @@ class FoodTruckControllerTest {
         foodTruckDTO.setLocation("Test Location");
         pagingSlicedResult = new PagingSlicedResult<>(Collections.singletonList(foodTruckDTO), 0, 10, 1L);
 
-        } catch (Exception e) {
-            throw new RuntimeException(e);
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        if (autoCloseable != null) {
+            autoCloseable.close(); // 关闭资源
         }
     }
 

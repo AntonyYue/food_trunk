@@ -1,4 +1,4 @@
-package org.example.food_trunk;
+package org.example.food_trunk.controller;
 
 import org.example.food_trunk.entity.FoodTruck;
 import org.example.food_trunk.repository.FoodTruckRepository;

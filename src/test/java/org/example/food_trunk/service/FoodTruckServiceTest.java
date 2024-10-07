@@ -1,4 +1,4 @@
-package org.example.food_trunk;
+package org.example.food_trunk.service;
 
 import org.example.food_trunk.dto.FoodTruckDTO;
 import org.example.food_trunk.entity.FoodTruck;
@@ -6,8 +6,8 @@ import org.example.food_trunk.impl.FoodTruckServiceImpl;
 import org.example.food_trunk.mapper.FoodTruckMapper;
 import org.example.food_trunk.repository.FoodTruckRepository;
 
-import org.example.food_trunk.service.FoodTruckService;
 import org.example.food_trunk.util.PagingSlicedResult;
+import org.junit.jupiter.api.AfterEach;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import org.mockito.InjectMocks;
@@ -45,9 +45,11 @@ class FoodTruckServiceTest {
     private FoodTruckDTO foodTruckDTO;
     private Page<FoodTruck> foodTruckPage;
 
+    private AutoCloseable autoCloseable;
+
     @BeforeEach
     void setUp() {
-        AutoCloseable autoCloseable = MockitoAnnotations.openMocks(this);
+        autoCloseable = MockitoAnnotations.openMocks(this);
 
         foodTruck = new FoodTruck();
         foodTruck.setFacilityType("Test Facility");
@@ -61,6 +63,13 @@ class FoodTruckServiceTest {
         foodTruckDTO.setLocation("Test Location");
         foodTruckDTO.setFoodItems("Vegan");
         foodTruckPage = new PageImpl<>(Collections.singletonList(foodTruck));
+    }
+
+    @AfterEach
+    void tearDown() throws Exception {
+        if (autoCloseable != null) {
+            autoCloseable.close(); // 关闭资源
+        }
     }
 
     @Test
